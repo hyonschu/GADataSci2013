@@ -1,0 +1,279 @@
+> setwd("datasci/GADataSci2013/linearRegression")
+> getwd()
+[1] "/Users/hyonschu/datasci/GADataSci2013/LinearRegression"
+> library(ggplot2)
+> x <- read.csv("pace.txt", h=T)
+> head(x)
+        city    speed  pop
+1    Brno_CZ 0.341948 4.81
+2  Prague_CZ 1.092759 5.88
+3   Corte_FR 0.005491 3.31
+4  Bastia_FR 0.493750 4.90
+5  Munich_GE 1.340000 5.62
+6 Psychro_GR 0.000365 2.76
+> str(x)
+'data.frame':	15 obs. of  3 variables:
+ $ city : Factor w/ 15 levels "Athens_GR","Bastia_FR",..: 3 13 5 2 10 14 8 7 1 15 ...
+ $ speed: num  0.34195 1.09276 0.00549 0.49375 1.34 ...
+ $ pop  : num  4.81 5.88 3.31 4.9 5.62 2.76 2.27 3.85 5.21 3.7 ...
+> ggplot(x, aes(y=speed, x=pop)) + geom_point()
+> linear.fit <- lm(pop ~ speed, data=x)
+> summary(linear.fit)
+
+Call:
+lm(formula = pop ~ speed, data = x)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.42046 -0.51769 -0.00158  0.65962  1.13502 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)   3.6880     0.2778  13.275 6.17e-09 ***
+speed         0.9672     0.3094   3.126  0.00803 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.8205 on 13 degrees of freedom
+Multiple R-squared:  0.4292,	Adjusted R-squared:  0.3853 
+F-statistic: 9.774 on 1 and 13 DF,  p-value: 0.008029
+
+> log.fit <- lm(log(speed) ~ log(pop), data=x)
+> summary(log.fit)
+
+Call:
+lm(formula = log(speed) ~ log(pop), data = x)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-2.2927 -0.7014 -0.1421  0.8201  2.4433 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  -14.571      1.812  -8.041 2.11e-06 ***
+log(pop)       8.814      1.259   6.999 9.35e-06 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.27 on 13 degrees of freedom
+Multiple R-squared:  0.7903,	Adjusted R-squared:  0.7742 
+F-statistic: 48.99 on 1 and 13 DF,  p-value: 9.35e-06
+
+> setwd("datasci/GADatasci2013/linearregression2")
+Error in setwd("datasci/GADatasci2013/linearregression2") : 
+  cannot change working directory
+> setwd("../datasci/GADatasci2013/linearregression2")
+Error in setwd("../datasci/GADatasci2013/linearregression2") : 
+  cannot change working directory
+> setwd("~/datasci/GADatasci2013/linearregression2")
+> getwd()
+[1] "/Users/hyonschu/datasci/GADataSci2013/LinearRegression2"
+> x <- read.table("http://www.ats.ucla.edu/stat/examples/chp/p054.txt", sep="\t", h=T)
+> head(x)
+   Y X1 X2 X3 X4 X5 X6
+1 43 51 30 39 61 92 45
+2 63 64 51 54 63 73 47
+3 71 70 68 69 76 86 48
+4 61 63 45 47 54 84 35
+5 81 78 56 66 71 83 47
+6 43 55 49 44 54 49 34
+> str(x)
+'data.frame':	30 obs. of  7 variables:
+ $ Y : num  43 63 71 61 81 43 58 71 72 67 ...
+ $ X1: num  51 64 70 63 78 55 67 75 82 61 ...
+ $ X2: num  30 51 68 45 56 49 42 50 72 45 ...
+ $ X3: num  39 54 69 47 66 44 56 55 67 47 ...
+ $ X4: num  61 63 76 54 71 54 66 70 71 62 ...
+ $ X5: num  92 73 86 84 83 49 68 66 83 80 ...
+ $ X6: num  45 47 48 35 47 34 35 41 31 41 ...
+> plot(x)
+> fit <- lm(Y ~ ., data=x)
+> summary(fit)
+
+Call:
+lm(formula = Y ~ ., data = x)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-10.9418  -4.3555   0.3158   5.5425  11.5990 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 10.78708   11.58926   0.931 0.361634    
+X1           0.61319    0.16098   3.809 0.000903 ***
+X2          -0.07305    0.13572  -0.538 0.595594    
+X3           0.32033    0.16852   1.901 0.069925 .  
+X4           0.08173    0.22148   0.369 0.715480    
+X5           0.03838    0.14700   0.261 0.796334    
+X6          -0.21706    0.17821  -1.218 0.235577    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 7.068 on 23 degrees of freedom
+Multiple R-squared:  0.7326,	Adjusted R-squared:  0.6628 
+F-statistic:  10.5 on 6 and 23 DF,  p-value: 1.24e-05
+
+> ggplot(fit)
+Error: No layers in plot
+> fit2 <- update(fit, .~. -X5)
+> summary(fit2)
+
+Call:
+lm(formula = Y ~ X1 + X2 + X3 + X4 + X6, data = x)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-11.8088  -4.8353   0.4199   5.5775  11.5276 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 12.79791    8.49061   1.507 0.144785    
+X1           0.61315    0.15783   3.885 0.000704 ***
+X2          -0.07224    0.13303  -0.543 0.592122    
+X3           0.31172    0.16202   1.924 0.066300 .  
+X4           0.09795    0.20842   0.470 0.642621    
+X6          -0.21111    0.17328  -1.218 0.234956    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 6.929 on 24 degrees of freedom
+Multiple R-squared:  0.7318,	Adjusted R-squared:  0.6759 
+F-statistic:  13.1 on 5 and 24 DF,  p-value: 3.278e-06
+
+> fit3 <- update(fit, .~. -X4)
+> summary(fit3)
+
+Call:
+lm(formula = Y ~ X1 + X2 + X3 + X5 + X6, data = x)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-10.666  -4.739   0.675   5.867  11.608 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 11.14747   11.33831   0.983   0.3353    
+X1           0.64413    0.13492   4.774 7.38e-05 ***
+X2          -0.07689    0.13287  -0.579   0.5682    
+X3           0.33315    0.16191   2.058   0.0506 .  
+X5           0.05360    0.13853   0.387   0.7023    
+X6          -0.18897    0.15822  -1.194   0.2440    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 6.94 on 24 degrees of freedom
+Multiple R-squared:  0.731,	Adjusted R-squared:  0.675 
+F-statistic: 13.05 on 5 and 24 DF,  p-value: 3.391e-06
+
+> fit4 <- update(fit, .~. -X2)
+> summary(fit4)
+
+Call:
+lm(formula = Y ~ X1 + X3 + X4 + X5 + X6, data = x)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-11.277  -4.429   0.181   5.735  11.634 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 10.06724   11.34019   0.888 0.383487    
+X1           0.58077    0.14707   3.949 0.000599 ***
+X3           0.30795    0.16445   1.873 0.073362 .  
+X4           0.09088    0.21753   0.418 0.679831    
+X5           0.03657    0.14477   0.253 0.802730    
+X6          -0.23476    0.17254  -1.361 0.186269    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 6.963 on 24 degrees of freedom
+Multiple R-squared:  0.7292,	Adjusted R-squared:  0.6728 
+F-statistic: 12.93 on 5 and 24 DF,  p-value: 3.659e-06
+
+> fit3 <- update(fit2, .~. -X4)
+> summary(fit3)
+
+Call:
+lm(formula = Y ~ X1 + X2 + X3 + X6, data = x)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-11.8976  -5.5171   0.7654   5.8086  11.5022 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 14.30347    7.73957   1.848   0.0765 .  
+X1           0.65338    0.13051   5.006 3.67e-05 ***
+X2          -0.07682    0.13059  -0.588   0.5616    
+X3           0.32395    0.15741   2.058   0.0502 .  
+X6          -0.17151    0.14904  -1.151   0.2607    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 6.821 on 25 degrees of freedom
+Multiple R-squared:  0.7293,	Adjusted R-squared:  0.686 
+F-statistic: 16.84 on 4 and 25 DF,  p-value: 8.134e-07
+
+> fit4 <- update(fit3, .~. -X2)
+> summary(fit4)
+
+Call:
+lm(formula = Y ~ X1 + X3 + X6, data = x)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-12.217  -5.377   0.967   6.078  11.540 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  13.5777     7.5439   1.800   0.0835 .  
+X1            0.6227     0.1181   5.271 1.65e-05 ***
+X3            0.3124     0.1542   2.026   0.0532 .  
+X6           -0.1870     0.1449  -1.291   0.2082    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 6.734 on 26 degrees of freedom
+Multiple R-squared:  0.7256,	Adjusted R-squared:  0.6939 
+F-statistic: 22.92 on 3 and 26 DF,  p-value: 1.807e-07
+
+> fit5 <- update(fit4, .~. -X6)
+> summary(fit5)
+
+Call:
+lm(formula = Y ~ X1 + X3, data = x)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-11.5568  -5.7331   0.6701   6.5341  10.3610 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)   9.8709     7.0612   1.398    0.174    
+X1            0.6435     0.1185   5.432 9.57e-06 ***
+X3            0.2112     0.1344   1.571    0.128    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 6.817 on 27 degrees of freedom
+Multiple R-squared:  0.708,	Adjusted R-squared:  0.6864 
+F-statistic: 32.74 on 2 and 27 DF,  p-value: 6.058e-08
+
+> plot(resid(fit4))
+> qqnorm(resid(fit4))
+> qqplot
+function (x, y, plot.it = TRUE, xlab = deparse(substitute(x)), 
+    ylab = deparse(substitute(y)), ...) 
+{
+    sx <- sort(x)
+    sy <- sort(y)
+    lenx <- length(sx)
+    leny <- length(sy)
+    if (leny < lenx) 
+        sx <- approx(1L:lenx, sx, n = leny)$y
+    if (leny > lenx) 
+        sy <- approx(1L:leny, sy, n = lenx)$y
+    if (plot.it) 
+        plot(sx, sy, xlab = xlab, ylab = ylab, ...)
+    invisible(list(x = sx, y = sy))
+}

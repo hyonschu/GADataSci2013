@@ -1,0 +1,123 @@
+> x <- read.table("http://www.ats.ucla.edu/stat/examples/chp/p081.txt", sep = "\t", h=T)
+> head(x)
+  State  Age   HS Income Black Female Price Sales
+1    AL 27.0 41.3   2948  26.2   51.7  42.7  89.8
+2    AK 22.9 66.7   4644   3.0   45.7  41.8 121.3
+3    AZ 26.3 58.1   3665   3.0   50.8  38.5 115.2
+4    AR 29.1 39.9   2878  18.3   51.5  38.8 100.3
+5    CA 28.1 62.6   4493   7.0   50.8  39.7 123.0
+6    CO 26.2 63.9   3855   3.0   50.7  31.1 124.8
+> str(x)
+'data.frame':	51 obs. of  8 variables:
+ $ State : Factor w/ 51 levels "AK","AL","AR",..: 2 1 4 3 5 6 7 9 8 10 ...
+ $ Age   : num  27 22.9 26.3 29.1 28.1 26.2 29.1 26.8 28.4 32.3 ...
+ $ HS    : num  41.3 66.7 58.1 39.9 62.6 63.9 56 54.6 55.2 52.6 ...
+ $ Income: num  2948 4644 3665 2878 4493 ...
+ $ Black : num  26.2 3 3 18.3 7 3 6 14.3 71.1 15.3 ...
+ $ Female: num  51.7 45.7 50.8 51.5 50.8 50.7 51.5 51.3 53.5 51.8 ...
+ $ Price : num  42.7 41.8 38.5 38.8 39.7 31.1 45.5 41.3 32.6 43.8 ...
+ $ Sales : num  89.8 121.3 115.2 100.3 123 ...
+> x$State <- NULL
+
+> fit <- lm(Sales ~ ., data=x)
+> summary(fit)
+
+Call:
+lm(formula = Sales ~ ., data = x)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-48.398 -12.388  -5.367   6.270 133.213 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)   
+(Intercept) 103.34485  245.60719   0.421  0.67597   
+Age           4.52045    3.21977   1.404  0.16735   
+HS           -0.06159    0.81468  -0.076  0.94008   
+Income        0.01895    0.01022   1.855  0.07036 . 
+Black         0.35754    0.48722   0.734  0.46695   
+Female       -1.05286    5.56101  -0.189  0.85071   
+Price        -3.25492    1.03141  -3.156  0.00289 **
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 28.17 on 44 degrees of freedom
+Multiple R-squared:  0.3208,	Adjusted R-squared:  0.2282 
+F-statistic: 3.464 on 6 and 44 DF,  p-value: 0.006857
+
+> fit <- lm(Sales ~ 0 + ., data=x)
+> summary(fit)
+
+Call:
+lm(formula = Sales ~ 0 + ., data = x)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-44.819 -11.131  -6.127   5.334 132.544 
+
+Coefficients:
+       Estimate Std. Error t value Pr(>|t|)   
+Age     3.93883    2.88125   1.367  0.17840   
+HS     -0.00229    0.79503  -0.003  0.99771   
+Income  0.01950    0.01004   1.943  0.05827 . 
+Black   0.28944    0.45534   0.636  0.52821   
+Female  1.15527    1.82304   0.634  0.52948   
+Price  -3.19659    1.01266  -3.157  0.00285 **
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 27.92 on 45 degrees of freedom
+Multiple R-squared:  0.9564,	Adjusted R-squared:  0.9506 
+F-statistic: 164.6 on 6 and 45 DF,  p-value: < 2.2e-16
+
+> fit2 <- update(fit, .~. -HS)
+> summary(fit2)
+
+Call:
+lm(formula = Sales ~ Age + Income + Black + Female + Price - 
+    1, data = x)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-44.814 -11.135  -6.120   5.345 132.542 
+
+Coefficients:
+        Estimate Std. Error t value Pr(>|t|)   
+Age     3.942340   2.583062   1.526  0.13380   
+Income  0.019482   0.006857   2.841  0.00667 **
+Black   0.290347   0.325716   0.891  0.37735   
+Female  1.152096   1.435730   0.802  0.42642   
+Price  -3.196235   0.994132  -3.215  0.00239 **
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 27.61 on 46 degrees of freedom
+Multiple R-squared:  0.9564,	Adjusted R-squared:  0.9517 
+F-statistic: 201.9 on 5 and 46 DF,  p-value: < 2.2e-16
+
+> fit3 <- update(fit2, .~. -Female)
+> summary(fit3)
+
+Call:
+lm(formula = Sales ~ Age + Income + Black + Price - 1, data = x)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-42.714 -12.426  -5.813   5.679 133.839 
+
+Coefficients:
+       Estimate Std. Error t value Pr(>|t|)    
+Age     5.66372    1.43345   3.951  0.00026 ***
+Income  0.01952    0.00683   2.857  0.00634 ** 
+Black   0.37111    0.30860   1.203  0.23517    
+Price  -2.92582    0.93173  -3.140  0.00292 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 27.51 on 47 degrees of freedom
+Multiple R-squared:  0.9558,	Adjusted R-squared:  0.9521 
+F-statistic: 254.2 on 4 and 47 DF,  p-value: < 2.2e-16
+
+> plot(resid(fit3))
+> qqnorm(resid(fit3))
+> 
