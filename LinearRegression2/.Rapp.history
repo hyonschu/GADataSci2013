@@ -1,0 +1,572 @@
+knndatasci(iris, 0.7, 100, 1)
+knndatasci <- function(dataset, train.pct, maxk, seedN) {#
+#
+	library(ggplot2)#
+	library(class)#
+	labels <- dataset$Species#
+	dataset$Species <- NULL#
+	set.seed(seedN)#
+	N <- nrow(dataset)#
+	train.index <- sample(1:N, train.pct * N )#
+	train.data <- dataset[train.index, ]#
+	test.data <- dataset[-train.index, ]#
+	train.labels <- as.factor(as.matrix(labels)[train.index, ])#
+	test.labels <- as.factor(as.matrix(labels)[-train.index, ])#
+	err.rates <- data.frame()#
+	for (k in 1:maxk) {#
+		knn.fit <- knn(train = train.data,#
+			test = test.data,#
+			cl = train.labels,#
+			k = maxk)#
+		cat('\n', 'k = ', k, ', train.pct = ', train.pct, '\n', sep = '')#
+		print(table(test.labels, knn.fit))#
+		this.err <- sum(test.labels != knn.fit) / length(test.labels)#
+		err.rates <- rbind(err.rates, this.err)#
+	}#
+	results <- data.frame(1:maxk, err.rates)#
+	names(results) <- c('k', 'err.rate')#
+	# title <- paste('kNN Results (train.pct = ', train.pct, ')', sep = '')#
+	results.plot <- ggplot(results, aes(x=k, y=err.rate)) + geom_point() + geom_line() + ggtitle(title)#
+	print(results.plot)#
+}
+knndatasci(iris, 0.7, 100, 1)
+knndatasci <- function(dataset, train.pct, maxk, seedN) {#
+#
+	library(ggplot2)#
+	library(class)#
+	labels <- dataset$Species#
+	dataset$Species <- NULL#
+	set.seed(seedN)#
+	N <- nrow(dataset)#
+	train.index <- sample(1:N, train.pct * N )#
+	train.data <- dataset[train.index, ]#
+	test.data <- dataset[-train.index, ]#
+	train.labels <- as.factor(as.matrix(labels)[train.index, ])#
+	test.labels <- as.factor(as.matrix(labels)[-train.index, ])#
+	err.rates <- data.frame()#
+	for (k in 1:maxk) {#
+		knn.fit <- knn(train = train.data,#
+			test = test.data,#
+			cl = train.labels,#
+			k = maxk)#
+		cat('\n', 'k = ', k, ', train.pct = ', train.pct, '\n', sep = '')#
+		print(table(test.labels, knn.fit))#
+		this.err <- sum(test.labels != knn.fit) / length(test.labels)#
+		err.rates <- rbind(err.rates, this.err)#
+	}#
+	results <- data.frame(1:maxk, err.rates)#
+	names(results) <- c('k', 'err.rate')#
+	 title <- paste('kNN Results (train.pct = ', train.pct, ')', sep = '')#
+	results.plot <- ggplot(results, aes(x=k, y=err.rate)) + geom_point() + geom_line() + ggtitle(title)#
+	print(results.plot)#
+}
+knndatasci(iris, 0.7, 100, 1)
+knndatasci <- function(dataset, train.pct, maxk, seedN) {#
+#
+	library(ggplot2)#
+	library(class)#
+	labels <- dataset$Species#
+	dataset$Species <- NULL#
+	set.seed(seedN)#
+	N <- nrow(dataset)#
+	train.index <- sample(1:N, train.pct * N )#
+	train.data <- dataset[train.index, ]#
+	test.data <- dataset[-train.index, ]#
+	train.labels <- as.factor(as.matrix(labels)[train.index, ])#
+	test.labels <- as.factor(as.matrix(labels)[-train.index, ])#
+	err.rates <- data.frame()#
+	for (k in 1:maxk) {#
+		knn.fit <- knn(train = train.data,#
+			test = test.data,#
+			cl = train.labels,#
+			k = maxk)#
+		cat('\n', 'k = ', k, ', train.pct = ', train.pct, '\n', sep = '')#
+		print(table(test.labels, knn.fit))#
+		this.err <- sum(test.labels != knn.fit) / length(test.labels)#
+		err.rates <- rbind(err.rates, this.err)#
+	}#
+	results <- data.frame(1:maxk, err.rates)#
+	names(results) <- c('k', 'err.rate')#
+	#title <- paste('kNN Results (train.pct = ', train.pct, ')', sep = '')#
+	results.plot <- ggplot(results, aes(x=k, y=err.rate)) + geom_point() + geom_line() + ggtitle(title)#
+	print(results.plot)#
+}
+knndatasci(iris, 0.7, 100, 1)
+knndatasci <- function(dataset, train.pct, maxk, seedN) {#
+#
+	library(ggplot2)#
+	library(class)#
+	labels <- dataset$Species#
+	dataset$Species <- NULL#
+	set.seed(seedN)#
+	N <- nrow(dataset)#
+	train.index <- sample(1:N, train.pct * N )#
+	train.data <- dataset[train.index, ]#
+	test.data <- dataset[-train.index, ]#
+	train.labels <- as.factor(as.matrix(labels)[train.index, ])#
+	test.labels <- as.factor(as.matrix(labels)[-train.index, ])#
+	err.rates <- data.frame()#
+	for (k in 1:maxk) {#
+		knn.fit <- knn(train = train.data,#
+			test = test.data,#
+			cl = train.labels,#
+			k = maxk)#
+		cat('\n', 'k = ', k, ', train.pct = ', train.pct, '\n', sep = '')#
+		print(table(test.labels, knn.fit))#
+		this.err <- sum(test.labels != knn.fit) / length(test.labels)#
+		err.rates <- rbind(err.rates, this.err)#
+	}#
+	results <- data.frame(1:maxk, err.rates)#
+	names(results) <- c('k', 'err.rate')#
+	title <- paste('kNN Results (train.pct = ', train.pct, ')', sep = '')#
+	results.plot <- ggplot(results, aes(x=k, y=err.rate)) + geom_point() + geom_line() + ggtitle(title)#
+	print(results.plot)#
+}
+knndatasci(iris, 0.7, 100, 1)
+library(ggplot2)#
+	library(class)#
+	labels <- dataset$Species#
+	dataset$Species <- NULL#
+	set.seed(2)#
+	N <- nrow(dataset)#
+	train.index <- sample(1:N, train.pct * N )#
+	train.data <- dataset[train.index, ]#
+	test.data <- dataset[-train.index, ]#
+	train.labels <- as.factor(as.matrix(labels)[train.index, ])#
+	test.labels <- as.factor(as.matrix(labels)[-train.index, ])#
+	err.rates <- data.frame()#
+	for (k in 1:maxk) {#
+		knn.fit <- knn(train = train.data,#
+			test = test.data,#
+			cl = train.labels,#
+			k = maxk)#
+		cat('\n', 'k = ', k, ', train.pct = ', train.pct, '\n', sep = '')#
+		print(table(test.labels, knn.fit))#
+		this.err <- sum(test.labels != knn.fit) / length(test.labels)#
+		err.rates <- rbind(err.rates, this.err)#
+	}#
+	results <- data.frame(1:maxk, err.rates)#
+	names(results) <- c('k', 'err.rate')#
+	title <- paste('kNN Results (train.pct = ', train.pct, ')', sep = '')#
+	results.plot <- ggplot(results, aes(x=k, y=err.rate)) + geom_point() + geom_line() + ggtitle(title)#
+	print(results.plot)
+library(ggplot2)#
+	library(class)#
+	dataset <- iris#
+	labels <- dataset$Species#
+	dataset$Species <- NULL#
+	set.seed(2)#
+	train.pct <- 0.7#
+	N <- nrow(dataset)#
+	train.index <- sample(1:N, train.pct * N )#
+	train.data <- dataset[train.index, ]#
+	test.data <- dataset[-train.index, ]#
+	train.labels <- as.factor(as.matrix(labels)[train.index, ])#
+	test.labels <- as.factor(as.matrix(labels)[-train.index, ])#
+	err.rates <- data.frame()#
+	for (k in 1:maxk) {#
+		knn.fit <- knn(train = train.data,#
+			test = test.data,#
+			cl = train.labels,#
+			k = maxk)#
+		cat('\n', 'k = ', k, ', train.pct = ', train.pct, '\n', sep = '')#
+		print(table(test.labels, knn.fit))#
+		this.err <- sum(test.labels != knn.fit) / length(test.labels)#
+		err.rates <- rbind(err.rates, this.err)#
+	}#
+	results <- data.frame(1:maxk, err.rates)#
+	names(results) <- c('k', 'err.rate')#
+	title <- paste('kNN Results (train.pct = ', train.pct, ')', sep = '')#
+	results.plot <- ggplot(results, aes(x=k, y=err.rate)) + geom_point() + geom_line() + ggtitle(title)#
+	print(results.plot)
+library(ggplot2)#
+	library(class)#
+	dataset <- iris#
+	labels <- dataset$Species#
+	dataset$Species <- NULL#
+	set.seed(2)#
+	train.pct <- 0.7#
+	N <- nrow(dataset)#
+	train.index <- sample(1:N, train.pct * N )#
+	train.data <- dataset[train.index, ]#
+	test.data <- dataset[-train.index, ]#
+	train.labels <- as.factor(as.matrix(labels)[train.index, ])#
+	test.labels <- as.factor(as.matrix(labels)[-train.index, ])#
+	err.rates <- data.frame()#
+	maxk <- 100#
+	for (k in 1:maxk) {#
+		knn.fit <- knn(train = train.data,#
+			test = test.data,#
+			cl = train.labels,#
+			k = maxk)#
+		cat('\n', 'k = ', k, ', train.pct = ', train.pct, '\n', sep = '')#
+		print(table(test.labels, knn.fit))#
+		this.err <- sum(test.labels != knn.fit) / length(test.labels)#
+		err.rates <- rbind(err.rates, this.err)#
+	}#
+	results <- data.frame(1:maxk, err.rates)#
+	names(results) <- c('k', 'err.rate')#
+	title <- paste('kNN Results (train.pct = ', train.pct, ')', sep = '')#
+	results.plot <- ggplot(results, aes(x=k, y=err.rate)) + geom_point() + geom_line() + ggtitle(title)#
+	print(results.plot)
+library(ggplot2)#
+	library(class)#
+	dataset <- iris#
+	labels <- dataset$Species#
+	dataset$Species <- NULL#
+	set.seed(1)#
+	train.pct <- 0.7#
+	N <- nrow(dataset)#
+	train.index <- sample(1:N, train.pct * N )#
+	train.data <- dataset[train.index, ]#
+	test.data <- dataset[-train.index, ]#
+	train.labels <- as.factor(as.matrix(labels)[train.index, ])#
+	test.labels <- as.factor(as.matrix(labels)[-train.index, ])#
+	err.rates <- data.frame()#
+	maxk <- 100#
+	for (k in 1:maxk) {#
+		knn.fit <- knn(train = train.data,#
+			test = test.data,#
+			cl = train.labels,#
+			k = maxk)#
+		cat('\n', 'k = ', k, ', train.pct = ', train.pct, '\n', sep = '')#
+		print(table(test.labels, knn.fit))#
+		this.err <- sum(test.labels != knn.fit) / length(test.labels)#
+		err.rates <- rbind(err.rates, this.err)#
+	}#
+	results <- data.frame(1:maxk, err.rates)#
+	names(results) <- c('k', 'err.rate')#
+	title <- paste('kNN Results (train.pct = ', train.pct, ')', sep = '')#
+	results.plot <- ggplot(results, aes(x=k, y=err.rate)) + geom_point() + geom_line() + ggtitle(title)#
+	print(results.plot)
+knndatasci <- function(dataset, seedN, train.pct, maxk) {#
+#
+	library(ggplot2)#
+	library(class)#
+	dataset <- iris#
+	labels <- dataset$Species#
+	dataset$Species <- NULL#
+	set.seed(1)#
+	train.pct <- 0.7#
+	N <- nrow(dataset)#
+	train.index <- sample(1:N, train.pct * N )#
+	train.data <- dataset[train.index, ]#
+	test.data <- dataset[-train.index, ]#
+	train.labels <- as.factor(as.matrix(labels)[train.index, ])#
+	test.labels <- as.factor(as.matrix(labels)[-train.index, ])#
+	err.rates <- data.frame()#
+	maxk <- 100#
+	for (k in 1:maxk) {#
+		knn.fit <- knn(train = train.data,#
+			test = test.data,#
+			cl = train.labels,#
+			k = maxk)#
+		cat('\n', 'k = ', k, ', train.pct = ', train.pct, '\n', sep = '')#
+		print(table(test.labels, knn.fit))#
+		this.err <- sum(test.labels != knn.fit) / length(test.labels)#
+		err.rates <- rbind(err.rates, this.err)#
+	}#
+	results <- data.frame(1:maxk, err.rates)#
+	names(results) <- c('k', 'err.rate')#
+	title <- paste('kNN Results (train.pct = ', train.pct, ')', sep = '')#
+	results.plot <- ggplot(results, aes(x=k, y=err.rate)) + geom_point() + geom_line() + ggtitle(title)#
+	print(results.plot)#
+#}
+knndatasci <- function(data, seedN, train.pct, maxk) {#
+#
+	library(ggplot2)#
+	library(class)#
+	data <- iris#
+	labels <- data$Species#
+	data$Species <- NULL#
+	set.seed(1)#
+	train.pct <- 0.7#
+	N <- nrow(data)#
+	train.index <- sample(1:N, train.pct * N)#
+	train.data <- data[train.index, ]#
+	test.data <- data[-train.index, ]#
+	train.labels <- as.factor(as.matrix(labels)[train.index, ])#
+	test.labels <- as.factor(as.matrix(labels)[-train.index, ])#
+	err.rates <- data.frame()#
+	maxk <- 100#
+	for (k in 1:maxk) {#
+		knn.fit <- knn(train = train.data,#
+			test = test.data,#
+			cl = train.labels,#
+			k = k)#
+		cat('\n', 'k = ', k, ', train.pct = ', train.pct, '\n', sep = '')#
+		print(table(test.labels, knn.fit))#
+		this.err <- sum(test.labels != knn.fit) / length(test.labels)#
+		err.rates <- rbind(err.rates, this.err)#
+	}#
+	results <- data.frame(1:maxk, err.rates)#
+	names(results) <- c('k', 'err.rate')#
+	title <- paste('kNN Results (train.pct = ', train.pct, ')', sep = '')#
+	results.plot <- ggplot(results, aes(x=k, y=err.rate)) + geom_point() + geom_line() + ggtitle(title)#
+	print(results.plot)#
+#}
+knndatasci <- function(data, seedN, train.pct, maxk) {#
+#
+	library(ggplot2)#
+	library(class)#
+	labels <- data$Species#
+	data$Species <- NULL#
+	set.seed(seedN)#
+	N <- nrow(data)#
+	train.index <- sample(1:N, train.pct * N)#
+	train.data <- data[train.index, ]#
+	test.data <- data[-train.index, ]#
+	train.labels <- as.factor(as.matrix(labels)[train.index, ])#
+	test.labels <- as.factor(as.matrix(labels)[-train.index, ])#
+	err.rates <- data.frame()#
+	maxk <- 100#
+	for (k in 1:maxk) {#
+		knn.fit <- knn(train = train.data,#
+			test = test.data,#
+			cl = train.labels,#
+			k = k)#
+		cat('\n', 'k = ', k, ', train.pct = ', train.pct, '\n', sep = '')#
+		print(table(test.labels, knn.fit))#
+		this.err <- sum(test.labels != knn.fit) / length(test.labels)#
+		err.rates <- rbind(err.rates, this.err)#
+	}#
+	results <- data.frame(1:maxk, err.rates)#
+	names(results) <- c('k', 'err.rate')#
+	title <- paste('kNN Results (train.pct = ', train.pct, ')', sep = '')#
+	results.plot <- ggplot(results, aes(x=k, y=err.rate)) + geom_point() + geom_line() + ggtitle(title)#
+	print(results.plot)#
+}
+knndatasci(iris, 0.7, 100, 1)
+knndatasci(iris, 1, 0.7, 100)
+knndatasci(iris, 2, 0.7, 100)
+knndatasci(iris, 4, 0.7, 100)
+umbrella <- c(3,5,6,8,10,10,15,18,14,16)
+umbrella
+umbrella <- c(1,2,3,4,5,6,7,8,9,0)
+umbrella
+umbrella <- c(1,2,3,4,5,6,7,8,9,10)
+umbrella <- c(1,2,3,4,5,6,7,8,9)
+umbrella <- c(1,2,3,4,5,6,7,8,9,10)
+umbrella <- c(1,2,3,4,5,6,7,8,9)
+umbrella
+umbrella$Sales <- c(3,5,6,8,10,10,15,18,14,16)
+days <- c(1,2,3,4,5,6,7,8,9)
+sales <- data.frame(days=days,umbrella=umbrella)
+days <- c(0,1,2,3,4,5,6,7,8,9)
+sales <- data.frame(days=days,umbrella=umbrella)
+sales
+sales <- data.frame(days=days,umbrella=umbrella)days
+days
+umbrella
+umbrella <- c(3,5,6,8,10,10,15,18,14,16)
+sales <- data.frame(days=days,umbrella=umbrella)
+sales
+plot <- sales
+print(plot)
+plot <- lm(sales)
+print(plot)
+summary(plot)
+scatter()
+plot(plot)
+fit <- lm(y ~ umbrella, sales)
+fit <- lm(umbrella ~ days, sales)
+plot(fit)
+fit
+summary(fit)
+sales
+days
+umbrella
+plot(days, umbrella)
+fit <- lm(days~umbrella)
+fit
+plot(fit)
+fit <- lm(umbrella~days)
+plot(fit)
+fit <- lm(days~umbrella)
+plot(fit)
+help("~")
+plot(umbrella~days)
+lm(umbrella~days)
+fit <- lm(umbrella~days)
+abline(fit)
+qqplot()
+qqplot(fit)
+summary(fit)
+fit <- lm(umbrella~days col="black")
+fit <- lm(umbrella~days, col="black")
+fit <- lm(umbrella~days, col=black)
+plot(umbrella~days, col=black)
+plot(umbrella~days, col="black")
+plot(umbrella~days, pch="black")
+plot(umbrella~days, pch=black)
+plot(umbrella~days, pch=19)
+abline(plot)
+plot(umbrella~days, pch=19)
+abline(fit)
+fit
+umbrella
+plot(umbrella~days)
+umbrella
+days
+data
+sales
+plot(sales)
+summary(plot)
+plot
+sales
+summary(sales)
+data.frame()
+x <- data.frame()
+x$1 <- c("sampled shipment")
+x$1 <- c("sampled shipment", 1,2,3,4,5,6,7,8,9,10)
+x$1 <- NULL
+x
+sampled.shipment <- c(1,2,3,4,5,6,7,8,9,10)
+distance <- (825, 215, 1070, 550, 480, 920, 1350, 325, 670 1215)
+distance <- (825, 215, 1070, 550, 480, 920, 1350, 325, 670, 1215)
+distance <- c(825, 215, 1070, 550, 480, 920, 1350, 325, 670, 1215)
+delivery.days <- c(3.5, 1, 4, 2, 1, 3, 4.5, 1.5, 3, 5)
+deliveries <- data.frame(sampled.shipment, distance, delivery.days)
+deliveries
+deliveries$0 <- NULL
+scatter <- plot(distance ~ miles)
+scatter <- plot(distance ~ delivery.days)
+summary(scatter)
+fit <- lm(distance ~ delivery.days)
+plot(fit)
+summary(fit)
+deliveries$0 <- NULL
+deliveries$1 <- NULL
+deliveries$sampled.shipment <- NULL
+deliveries
+fit <- lm(distance ~ delivery.days, data = deliveries)
+plot(fit)
+deliveries
+fit <- lm(delivery.days ~ distance, data = deliveries)
+plot(fit)
+fit <- lm(delivery.days ~ distance, data = deliveries)
+summary(fit)
+plot(fit)
+plot(delivery.days ~ distance )
+absline(fit)
+abline(fit)
+resid(fit)
+plot(resid(fit))
+plot(deliveries)
+plit(fit)
+summary(fit)
+plot(fit)
+resit(plot)
+resid(plot)
+resid(fit)
+x
+deliveries
+library("e1071")data(iris)classifier<-naiveBayes(iris[,1:4], iris[,5])table(predict(classifier, iris[,-5]), iris[,5], dnn=list('predicted','actual'))classifier$apriori classifier$tables$Petal.Lengthplot(function(x) dnorm(x, 1.462, 0.1736640), 0, 8, col="red", main="Petal length distribution for the 3 different species")curve(dnorm(x, 4.260, 0.4699110), add=TRUE, col="blue") curve(dnorm(x, 5.552, 0.5518947 ), add=TRUE, col = "green")
+curve(dnorm(x, 4.260, 0.4699110), add=TRUE, col="blue"
+)
+curve(dnorm(x, 5.552, 0.5518947 ), add=TRUE, col = "green"
+)
+library("e1071")data(iris)classifier<-naiveBayes(iris[,1:4], iris[,5])table(predict(classifier, iris[,-5]), iris[,5], dnn=list('predicted','actual'))classifier$apriori classifier$tables$Petal.Lengthplot(function(x) dnorm(x, 1.462, 0.1736640), 0, 8, col="red", main="Petal length distribution for the 3 different species")
+classifier$tables$Petal.Length
+plot(function(x) dnorm(x, 1.462, 0.1736640), 0, 8, col="red", main="Petal length distribution for the 3 different species")
+curve(dnorm(x, 4.260, 0.4699110), add=TRUE, col="blue")
+curve(dnorm(x, 5.552, 0.5518947 ), add=TRUE, col = "green")
+dataset
+data
+datasets(?)
+datasets?
+;
+?datasets
+library(help = "datasets").
+library(help = "datasets")
+DATA(chickwts                Chicken Weights by Feed Type)
+chk <- data(chickwts)
+chk
+head(chk)
+chk <- data(c(chickwts))
+?data
+load(chkwts)
+chk <- load.data(chickwts)
+chk <- load(chickwts)
+setwd("datasci/GADataSci2013/linearRegression")
+getws()
+getwd()
+library(ggplot2)
+x <- read.csv("pace.txt", h=T)
+head(x)
+str(x)
+ggplot(x, aes(y=speed, x=pop)) + geom_point()
+linear.fit <- lm(pop ~ speed, data=x)
+summary(linear.fit)
+log.fit <- lm(log(speed) ~ log(pop), data=x)
+summary(log.fit)
+ggplot(log.fit)
+setwd("datasci/GADatasci2013/linearregression2")
+setwd("../datasci/GADatasci2013/linearregression2")
+setwd("~/datasci/GADatasci2013/linearregression2")
+getwd()
+x <- read.table("http://www.ats.ucla.edu/stat/examples/chp/p054.txt", sep="\t", h=T)
+head(x)
+str(x)
+plot(x)
+fit <- lm(Y ~ ., data=x)
+summary(fit)
+ggplot(fit)
+fit2 <- update(fit, .~. -X5)
+summary(fit2)
+fit3 <- update(fit, .~. -X4)
+summary(fit3)
+fit4 <- update(fit, .~. -X2)
+summary(fit4)
+fit3 <- update(fit2, .~. -X4)
+summary(fit3)
+fit4 <- update(fit3, .~. -X2)
+summary(fit4)
+fit5 <- update(fit4, .~. -X6)
+summary(fit5)
+plot(resid(fit4))
+scatterplot("gaussian white noise")
+qqnorm(resid(fit4))
+qqplot
+x <- read.table("http://www.ats.ucla.edu/stat/examples/chp/p081.txt", sep = "\t", h=T)
+head(x)
+str(x)
+x$State <- NULL
+fit <- lm(Sales ~ ., data=x)
+summary(fit)
+ggplot(x)
+ggplot(fit)
+qqnorm(fit)
+fit <- lm(Sales ~ 0 + ., data=x)
+summary(fit)
+fit <- update(fit, .~. -HS)
+summary(fit2)
+summary(fit)
+fit <- lm(Sales ~ ., data=x)
+summary(fit)
+fit <- lm(Sales ~ 0 + ., data=x)
+summary(fit)
+fit2 <- update(fit, .~. -HS)
+summary(fit2)
+fit3 <- update(fit2, .~. -Female)
+summary(fit3)
+plot(resid(fit3))
+qqnorm(resid(fit3))
+install.packages("gridExtra ", lib = "RPackages")
+install.packages("gridExtra", lib = "RPackages")
+library(stats)
+library("ggplot2")
+set.seed(1)
+d <- data.frame()
+d <- rbind(d, data.frame(x=1 + rnorm(20, 0, 0.1), y=1 + rnorm(20, 0, 0.1), label=as.factor(rep(1, each=20)))
+)
+d <- rbind(d, data.frame(x=1 + rnorm(20, 0, 0.1), y=3 + rnorm(20, 0, 0.1), label=as.factor(rep(2, each=20)))
+d <- rbind(d, data.frame(x=1 + rnorm(20, 0, 0.1), y=1 + rnorm(20, 0, 0.1), label=as.factor(rep(3, each=20)))
+d
+d <- data.frame()d <- rbind(d, data.frame(x=1 + rnorm(20, 0, 0.1), y=1 + rnorm(20, 0, 0.1), label=as.factor(rep(1, each=20))))
+d <- rbind(d, data.frame(x=1 + rnorm(20, 0, 0.1), y=3 + rnorm(20, 0, 0.1), label=as.factor(rep(2, each=20))))d <- rbind(d, data.frame(x=3 + rnorm(20, 0, 0.1), y=1 + rnorm(20, 0, 0.1), label=as.factor(rep(3, each=20))))d <- rbind(d, data.frame(x=3 + rnorm(20, 0, 0.1), y=3 + rnorm(20, 0, 0.1), label=as.factor(rep(4, each=20))))
+head(d)
+str(d)
+ggplot(d, aes(x=x, y=y)) + geom_point(aes(colour=label)) + ggtitle('d -- easy clusters')
+result1 <- kmeans(d[,1:2], 4)
+result1

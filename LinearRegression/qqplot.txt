@@ -1,0 +1,117 @@
+
+R version 3.0.1 (2013-05-16) -- "Good Sport"
+Copyright (C) 2013 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin10.8.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[R.app GUI 1.61 (6492) x86_64-apple-darwin10.8.0]
+
+[Workspace restored from /Users/hyonschu/.RData]
+[History restored from /Users/hyonschu/.Rapp.history]
+
+> setwd("datasci/GADataSci2013/linearregression")
+> getws()
+Error: could not find function "getws"
+> getwd()
+[1] "/Users/hyonschu/datasci/GADataSci2013/LinearRegression"
+> ggplot(x, aes(y=speed, x=pop)) + geom_point()
+Error: could not find function "ggplot"
+> library(ggplot2)
+Use suppressPackageStartupMessages to eliminate package startup messages.
+> ggplot(x, aes(y=speed, x=pop)) + geom_point()
+Error in ggplot(x, aes(y = speed, x = pop)) : object 'x' not found
+> x<- read.csv('pace.txt' ,h=T)
+> x
+           city    speed  pop
+1       Brno_CZ 0.341948 4.81
+2     Prague_CZ 1.092759 5.88
+3      Corte_FR 0.005491 3.31
+4     Bastia_FR 0.493750 4.90
+5     Munich_GE 1.340000 5.62
+6    Psychro_GR 0.000365 2.76
+7       Itea_GR 0.002500 2.27
+8   Iraklion_GR 0.782000 3.85
+9     Athens_GR 0.867023 5.21
+10     Safed_IS 0.014000 3.70
+11    Dimona_IS 0.023700 3.27
+12   Netanya_IS 0.707000 4.31
+13 Jerusalem_IS 0.304500 4.42
+14 New_Haven_US 0.138000 4.39
+15  Brooklyn_US 2.602000 5.05
+> ggplot(x, aes(y=speed, x=pop)) + geom_point()
+> ggplot(x, aes(y=speed, x=pop)) 
+Error: No layers in plot
+> linear.fit <- lm(pop ~ ,., data=x)
+Error: unexpected ',' in "linear.fit <- lm(pop ~ ,"
+> linear.fit <- lm(pop ~ speed, data=x)
+> summary(linear.fit)
+
+Call:
+lm(formula = pop ~ speed, data = x)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.42046 -0.51769 -0.00158  0.65962  1.13502 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)   3.6880     0.2778  13.275 6.17e-09 ***
+speed         0.9672     0.3094   3.126  0.00803 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.8205 on 13 degrees of freedom
+Multiple R-squared:  0.4292,	Adjusted R-squared:  0.3853 
+F-statistic: 9.774 on 1 and 13 DF,  p-value: 0.008029
+
+> plot(linear.fit)
+Hit <Return> to see next plot: 
+Hit <Return> to see next plot: 
+Hit <Return> to see next plot: 
+Hit <Return> to see next plot: 
+> 
+> ggplot(x, aes(y=speed, x=pop)) + geom_point()
+> log.fit <- lm(log(speed) ~ log(pop), data=x)
+> summary(log.fit)
+
+Call:
+lm(formula = log(speed) ~ log(pop), data = x)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-2.2927 -0.7014 -0.1421  0.8201  2.4433 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  -14.571      1.812  -8.041 2.11e-06 ***
+log(pop)       8.814      1.259   6.999 9.35e-06 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.27 on 13 degrees of freedom
+Multiple R-squared:  0.7903,	Adjusted R-squared:  0.7742 
+F-statistic: 48.99 on 1 and 13 DF,  p-value: 9.35e-06
+
+> plot(log.fit)
+Hit <Return> to see next plot: 
+Hit <Return> to see next plot: 
+Hit <Return> to see next plot: 
+Hit <Return> to see next plot: 
+> 
+> qqnorm(log.fit)
+Error in min(x, na.rm = na.rm) : invalid 'type' (list) of argument
+> qqnorm(resid(log.fit))
+> 

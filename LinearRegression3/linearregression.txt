@@ -19,8 +19,8 @@
  $ Sales : num  89.8 121.3 115.2 100.3 123 ...
 > x$State <- NULL
 
-> fit <- lm(Sales ~ ., data=x)
-> summary(fit)
+> fit <- lm(Sales ~ ., data=x) # linear model of Sales to all features
+> summary(fit) #view summ stats
 
 Call:
 lm(formula = Sales ~ ., data = x)

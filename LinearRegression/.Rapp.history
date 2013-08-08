@@ -1,0 +1,751 @@
+library(ggplot2)#
+	library(class)#
+	dataset <- iris#
+	labels <- dataset$Species#
+	dataset$Species <- NULL#
+	set.seed(2)#
+	train.pct <- 0.7#
+	N <- nrow(dataset)#
+	train.index <- sample(1:N, train.pct * N )#
+	train.data <- dataset[train.index, ]#
+	test.data <- dataset[-train.index, ]#
+	train.labels <- as.factor(as.matrix(labels)[train.index, ])#
+	test.labels <- as.factor(as.matrix(labels)[-train.index, ])#
+	err.rates <- data.frame()#
+	for (k in 1:maxk) {#
+		knn.fit <- knn(train = train.data,#
+			test = test.data,#
+			cl = train.labels,#
+			k = maxk)#
+		cat('\n', 'k = ', k, ', train.pct = ', train.pct, '\n', sep = '')#
+		print(table(test.labels, knn.fit))#
+		this.err <- sum(test.labels != knn.fit) / length(test.labels)#
+		err.rates <- rbind(err.rates, this.err)#
+	}#
+	results <- data.frame(1:maxk, err.rates)#
+	names(results) <- c('k', 'err.rate')#
+	title <- paste('kNN Results (train.pct = ', train.pct, ')', sep = '')#
+	results.plot <- ggplot(results, aes(x=k, y=err.rate)) + geom_point() + geom_line() + ggtitle(title)#
+	print(results.plot)
+library(ggplot2)#
+	library(class)#
+	dataset <- iris#
+	labels <- dataset$Species#
+	dataset$Species <- NULL#
+	set.seed(2)#
+	train.pct <- 0.7#
+	N <- nrow(dataset)#
+	train.index <- sample(1:N, train.pct * N )#
+	train.data <- dataset[train.index, ]#
+	test.data <- dataset[-train.index, ]#
+	train.labels <- as.factor(as.matrix(labels)[train.index, ])#
+	test.labels <- as.factor(as.matrix(labels)[-train.index, ])#
+	err.rates <- data.frame()#
+	maxk <- 100#
+	for (k in 1:maxk) {#
+		knn.fit <- knn(train = train.data,#
+			test = test.data,#
+			cl = train.labels,#
+			k = maxk)#
+		cat('\n', 'k = ', k, ', train.pct = ', train.pct, '\n', sep = '')#
+		print(table(test.labels, knn.fit))#
+		this.err <- sum(test.labels != knn.fit) / length(test.labels)#
+		err.rates <- rbind(err.rates, this.err)#
+	}#
+	results <- data.frame(1:maxk, err.rates)#
+	names(results) <- c('k', 'err.rate')#
+	title <- paste('kNN Results (train.pct = ', train.pct, ')', sep = '')#
+	results.plot <- ggplot(results, aes(x=k, y=err.rate)) + geom_point() + geom_line() + ggtitle(title)#
+	print(results.plot)
+library(ggplot2)#
+	library(class)#
+	dataset <- iris#
+	labels <- dataset$Species#
+	dataset$Species <- NULL#
+	set.seed(1)#
+	train.pct <- 0.7#
+	N <- nrow(dataset)#
+	train.index <- sample(1:N, train.pct * N )#
+	train.data <- dataset[train.index, ]#
+	test.data <- dataset[-train.index, ]#
+	train.labels <- as.factor(as.matrix(labels)[train.index, ])#
+	test.labels <- as.factor(as.matrix(labels)[-train.index, ])#
+	err.rates <- data.frame()#
+	maxk <- 100#
+	for (k in 1:maxk) {#
+		knn.fit <- knn(train = train.data,#
+			test = test.data,#
+			cl = train.labels,#
+			k = maxk)#
+		cat('\n', 'k = ', k, ', train.pct = ', train.pct, '\n', sep = '')#
+		print(table(test.labels, knn.fit))#
+		this.err <- sum(test.labels != knn.fit) / length(test.labels)#
+		err.rates <- rbind(err.rates, this.err)#
+	}#
+	results <- data.frame(1:maxk, err.rates)#
+	names(results) <- c('k', 'err.rate')#
+	title <- paste('kNN Results (train.pct = ', train.pct, ')', sep = '')#
+	results.plot <- ggplot(results, aes(x=k, y=err.rate)) + geom_point() + geom_line() + ggtitle(title)#
+	print(results.plot)
+knndatasci <- function(dataset, seedN, train.pct, maxk) {#
+#
+	library(ggplot2)#
+	library(class)#
+	dataset <- iris#
+	labels <- dataset$Species#
+	dataset$Species <- NULL#
+	set.seed(1)#
+	train.pct <- 0.7#
+	N <- nrow(dataset)#
+	train.index <- sample(1:N, train.pct * N )#
+	train.data <- dataset[train.index, ]#
+	test.data <- dataset[-train.index, ]#
+	train.labels <- as.factor(as.matrix(labels)[train.index, ])#
+	test.labels <- as.factor(as.matrix(labels)[-train.index, ])#
+	err.rates <- data.frame()#
+	maxk <- 100#
+	for (k in 1:maxk) {#
+		knn.fit <- knn(train = train.data,#
+			test = test.data,#
+			cl = train.labels,#
+			k = maxk)#
+		cat('\n', 'k = ', k, ', train.pct = ', train.pct, '\n', sep = '')#
+		print(table(test.labels, knn.fit))#
+		this.err <- sum(test.labels != knn.fit) / length(test.labels)#
+		err.rates <- rbind(err.rates, this.err)#
+	}#
+	results <- data.frame(1:maxk, err.rates)#
+	names(results) <- c('k', 'err.rate')#
+	title <- paste('kNN Results (train.pct = ', train.pct, ')', sep = '')#
+	results.plot <- ggplot(results, aes(x=k, y=err.rate)) + geom_point() + geom_line() + ggtitle(title)#
+	print(results.plot)#
+#}
+knndatasci <- function(data, seedN, train.pct, maxk) {#
+#
+	library(ggplot2)#
+	library(class)#
+	data <- iris#
+	labels <- data$Species#
+	data$Species <- NULL#
+	set.seed(1)#
+	train.pct <- 0.7#
+	N <- nrow(data)#
+	train.index <- sample(1:N, train.pct * N)#
+	train.data <- data[train.index, ]#
+	test.data <- data[-train.index, ]#
+	train.labels <- as.factor(as.matrix(labels)[train.index, ])#
+	test.labels <- as.factor(as.matrix(labels)[-train.index, ])#
+	err.rates <- data.frame()#
+	maxk <- 100#
+	for (k in 1:maxk) {#
+		knn.fit <- knn(train = train.data,#
+			test = test.data,#
+			cl = train.labels,#
+			k = k)#
+		cat('\n', 'k = ', k, ', train.pct = ', train.pct, '\n', sep = '')#
+		print(table(test.labels, knn.fit))#
+		this.err <- sum(test.labels != knn.fit) / length(test.labels)#
+		err.rates <- rbind(err.rates, this.err)#
+	}#
+	results <- data.frame(1:maxk, err.rates)#
+	names(results) <- c('k', 'err.rate')#
+	title <- paste('kNN Results (train.pct = ', train.pct, ')', sep = '')#
+	results.plot <- ggplot(results, aes(x=k, y=err.rate)) + geom_point() + geom_line() + ggtitle(title)#
+	print(results.plot)#
+#}
+knndatasci <- function(data, seedN, train.pct, maxk) {#
+#
+	library(ggplot2)#
+	library(class)#
+	labels <- data$Species#
+	data$Species <- NULL#
+	set.seed(seedN)#
+	N <- nrow(data)#
+	train.index <- sample(1:N, train.pct * N)#
+	train.data <- data[train.index, ]#
+	test.data <- data[-train.index, ]#
+	train.labels <- as.factor(as.matrix(labels)[train.index, ])#
+	test.labels <- as.factor(as.matrix(labels)[-train.index, ])#
+	err.rates <- data.frame()#
+	maxk <- 100#
+	for (k in 1:maxk) {#
+		knn.fit <- knn(train = train.data,#
+			test = test.data,#
+			cl = train.labels,#
+			k = k)#
+		cat('\n', 'k = ', k, ', train.pct = ', train.pct, '\n', sep = '')#
+		print(table(test.labels, knn.fit))#
+		this.err <- sum(test.labels != knn.fit) / length(test.labels)#
+		err.rates <- rbind(err.rates, this.err)#
+	}#
+	results <- data.frame(1:maxk, err.rates)#
+	names(results) <- c('k', 'err.rate')#
+	title <- paste('kNN Results (train.pct = ', train.pct, ')', sep = '')#
+	results.plot <- ggplot(results, aes(x=k, y=err.rate)) + geom_point() + geom_line() + ggtitle(title)#
+	print(results.plot)#
+}
+knndatasci(iris, 0.7, 100, 1)
+knndatasci(iris, 1, 0.7, 100)
+knndatasci(iris, 2, 0.7, 100)
+knndatasci(iris, 4, 0.7, 100)
+umbrella <- c(3,5,6,8,10,10,15,18,14,16)
+umbrella
+umbrella <- c(1,2,3,4,5,6,7,8,9,0)
+umbrella
+umbrella <- c(1,2,3,4,5,6,7,8,9,10)
+umbrella <- c(1,2,3,4,5,6,7,8,9)
+umbrella <- c(1,2,3,4,5,6,7,8,9,10)
+umbrella <- c(1,2,3,4,5,6,7,8,9)
+umbrella
+umbrella$Sales <- c(3,5,6,8,10,10,15,18,14,16)
+days <- c(1,2,3,4,5,6,7,8,9)
+sales <- data.frame(days=days,umbrella=umbrella)
+days <- c(0,1,2,3,4,5,6,7,8,9)
+sales <- data.frame(days=days,umbrella=umbrella)
+sales
+sales <- data.frame(days=days,umbrella=umbrella)days
+days
+umbrella
+umbrella <- c(3,5,6,8,10,10,15,18,14,16)
+sales <- data.frame(days=days,umbrella=umbrella)
+sales
+plot <- sales
+print(plot)
+plot <- lm(sales)
+print(plot)
+summary(plot)
+scatter()
+plot(plot)
+fit <- lm(y ~ umbrella, sales)
+fit <- lm(umbrella ~ days, sales)
+plot(fit)
+fit
+summary(fit)
+sales
+days
+umbrella
+plot(days, umbrella)
+fit <- lm(days~umbrella)
+fit
+plot(fit)
+fit <- lm(umbrella~days)
+plot(fit)
+fit <- lm(days~umbrella)
+plot(fit)
+help("~")
+plot(umbrella~days)
+lm(umbrella~days)
+fit <- lm(umbrella~days)
+abline(fit)
+qqplot()
+qqplot(fit)
+summary(fit)
+fit <- lm(umbrella~days col="black")
+fit <- lm(umbrella~days, col="black")
+fit <- lm(umbrella~days, col=black)
+plot(umbrella~days, col=black)
+plot(umbrella~days, col="black")
+plot(umbrella~days, pch="black")
+plot(umbrella~days, pch=black)
+plot(umbrella~days, pch=19)
+abline(plot)
+plot(umbrella~days, pch=19)
+abline(fit)
+fit
+umbrella
+plot(umbrella~days)
+umbrella
+days
+data
+sales
+plot(sales)
+summary(plot)
+plot
+sales
+summary(sales)
+data.frame()
+x <- data.frame()
+x$1 <- c("sampled shipment")
+x$1 <- c("sampled shipment", 1,2,3,4,5,6,7,8,9,10)
+x$1 <- NULL
+x
+sampled.shipment <- c(1,2,3,4,5,6,7,8,9,10)
+distance <- (825, 215, 1070, 550, 480, 920, 1350, 325, 670 1215)
+distance <- (825, 215, 1070, 550, 480, 920, 1350, 325, 670, 1215)
+distance <- c(825, 215, 1070, 550, 480, 920, 1350, 325, 670, 1215)
+delivery.days <- c(3.5, 1, 4, 2, 1, 3, 4.5, 1.5, 3, 5)
+deliveries <- data.frame(sampled.shipment, distance, delivery.days)
+deliveries
+deliveries$0 <- NULL
+scatter <- plot(distance ~ miles)
+scatter <- plot(distance ~ delivery.days)
+summary(scatter)
+fit <- lm(distance ~ delivery.days)
+plot(fit)
+summary(fit)
+deliveries$0 <- NULL
+deliveries$1 <- NULL
+deliveries$sampled.shipment <- NULL
+deliveries
+fit <- lm(distance ~ delivery.days, data = deliveries)
+plot(fit)
+deliveries
+fit <- lm(delivery.days ~ distance, data = deliveries)
+plot(fit)
+fit <- lm(delivery.days ~ distance, data = deliveries)
+summary(fit)
+plot(fit)
+plot(delivery.days ~ distance )
+absline(fit)
+abline(fit)
+resid(fit)
+plot(resid(fit))
+plot(deliveries)
+plit(fit)
+summary(fit)
+plot(fit)
+resit(plot)
+resid(plot)
+resid(fit)
+x
+deliveries
+library("e1071")data(iris)classifier<-naiveBayes(iris[,1:4], iris[,5])table(predict(classifier, iris[,-5]), iris[,5], dnn=list('predicted','actual'))classifier$apriori classifier$tables$Petal.Lengthplot(function(x) dnorm(x, 1.462, 0.1736640), 0, 8, col="red", main="Petal length distribution for the 3 different species")curve(dnorm(x, 4.260, 0.4699110), add=TRUE, col="blue") curve(dnorm(x, 5.552, 0.5518947 ), add=TRUE, col = "green")
+curve(dnorm(x, 4.260, 0.4699110), add=TRUE, col="blue"
+)
+curve(dnorm(x, 5.552, 0.5518947 ), add=TRUE, col = "green"
+)
+library("e1071")data(iris)classifier<-naiveBayes(iris[,1:4], iris[,5])table(predict(classifier, iris[,-5]), iris[,5], dnn=list('predicted','actual'))classifier$apriori classifier$tables$Petal.Lengthplot(function(x) dnorm(x, 1.462, 0.1736640), 0, 8, col="red", main="Petal length distribution for the 3 different species")
+classifier$tables$Petal.Length
+plot(function(x) dnorm(x, 1.462, 0.1736640), 0, 8, col="red", main="Petal length distribution for the 3 different species")
+curve(dnorm(x, 4.260, 0.4699110), add=TRUE, col="blue")
+curve(dnorm(x, 5.552, 0.5518947 ), add=TRUE, col = "green")
+dataset
+data
+datasets(?)
+datasets?
+;
+?datasets
+library(help = "datasets").
+library(help = "datasets")
+DATA(chickwts                Chicken Weights by Feed Type)
+chk <- data(chickwts)
+chk
+head(chk)
+chk <- data(c(chickwts))
+?data
+load(chkwts)
+chk <- load.data(chickwts)
+chk <- load(chickwts)
+library(AirPassengers)
+data(AirPassengers)
+ap <- data(AirPassengers)
+str(ap)
+head(ap)
+ap
+x <- read.table(CO2)
+x <- data.frame(CO2)
+head(x)
+x
+data <- iris
+labels <- data$Species
+data$Species <- NULL
+data
+setwd("datasci/GADataSci2013/linearregression")
+getws()
+getwd()
+ggplot(x, aes(y=speed, x=pop)) + geom_point()
+library(ggplot2)
+ggplot(x, aes(y=speed, x=pop)) + geom_point()
+x<- read.csv('pace.txt' ,h=T)
+x
+ggplot(x, aes(y=speed, x=pop)) + geom_point()
+ggplot(x, aes(y=speed, x=pop))
+linear.fit <- lm(pop ~ ,., data=x)
+linear.fit <- lm(pop ~ speed, data=x)
+summary(linear.fit)
+plot(linear.fit)
+ggplot(x, aes(y=speed, x=pop)) + geom_point()
+log.fit <- lm(log(speed) ~ log(pop), data=x)
+summary(log.fit)
+plot(log.fit)
+qqnorm(log.fit)
+qqnorm(resid(log.fit))
+absline(log.fit)
+abline(log.fit)
+abline(linear.fit)
+abline(log(log.fit))
+qqnorm(resid(log.fit))
+data <- irish
+data <- iris
+labels <- data$Species
+data$Species <- NULL
+data <- iris
+labels <- data$Species
+data$Species <- NULL
+set.seed(1)
+train.pct <- 0.7
+N <- nrow(data)
+head(N)
+N
+str(N)
+train.index <- sample(1:N, train.pct * N)
+train.index
+train.data <- data[train.index, ]
+test.data <- data[-train.index, ]
+train.labels <- as.factor(as.matrix(labels)[train.index, ])
+train.labels
+str(train.data)
+str(train.labels)
+train.data
+cat ('\n', 'k= ', k, ', train.pct=', train.pct, '\n', sep='')
+k <- 100
+cat ('\n', 'k= ', k, ', train.pct=', train.pct, '\n', sep='')
+knn.fit <- knn(train = train.data, test = test.data, cl=train.labels, k=k)
+library(class)
+knn.fit <- knn(train = train.data, test = test.data, cl=train.labels, k=k)
+knn.fit
+knn.fit <- knn(train = train.data, test = test.data, cl=train.labels, k=1)
+knn.fit
+knn.fit <- knn(train = train.data, test = test.data, cl=train.labels, k=2)
+knn.fit
+knn.fit <- knn(train = train.data, test = test.data, cl=train.labels, k=3)
+knn.fit
+knn.fit <- knn(train = train.data, test = test.data, cl=train.labels, k=4)
+knn.fit
+print(table(test.labels, knn.fit))
+for (k in 1:5) { #
+	knn.fit <- knn(train = train.data, test = test.data, cl=train.labels, k=k) #
+	#save to knn.fit knn data knn() using parameters#
+	# train = train.data, test = test.data, cl = factor of classification with k 1:max.k(100)#
+	cat ('\n', 'k= ', k, ', train.pct=', train.pct, '\n', sep='')#
+	# -> k= 100, train.pct=0.7#
+	print(table(test.labels, knn.fit)) # print confusion matrix#
+	this.err <- sum(test.labels != knn.fit) / length(test.labels)#
+	err.rates <- rbind(err.rates, this.err) #
+}
+train.labels <- as.factor(as.matrix(labels)[train.index, ])#
+# train.data turned into factors (ie 1,2,3) - selected from train.index#
+# index allows the data to be brought back together#
+test.labels <- as.factor(as.matrix(labels)[-train.index, ])
+for (k in 1:5) { #
+	knn.fit <- knn(train = train.data, test = test.data, cl=train.labels, k=k) #
+	#save to knn.fit knn data knn() using parameters#
+	# train = train.data, test = test.data, cl = factor of classification with k 1:max.k(100)#
+	cat ('\n', 'k= ', k, ', train.pct=', train.pct, '\n', sep='')#
+	# -> k= 100, train.pct=0.7#
+	print(table(test.labels, knn.fit)) # print confusion matrix#
+	this.err <- sum(test.labels != knn.fit) / length(test.labels)#
+	err.rates <- rbind(err.rates, this.err) #
+}
+err.rates <- data.frame()
+results <- data.frame(1:max.k, err.rates)#
+names(results) <- c('k', 'err.rate')#
+title <- paste('knn results (train.pct = ', train.pct, ')', sep='')
+max.k <- 100
+results <- data.frame(1:max.k, err.rates)#
+names(results) <- c('k', 'err.rate')#
+title <- paste('knn results (train.pct = ', train.pct, ')', sep='')
+data <- iris # load data 'iris'#
+labels <- data$Species # move labels to not affect learning#
+data$Species <- NULL # erase labels from working data#
+set.seed(1) # set non-random randomness#
+train.pct <- 0.7 # partition training data#
+N <- nrow(data) # remember how many rows there are#
+train.index <- sample(1:N, train.pct * N) #
+# train index is a sample of fields 1:150, selecting 0.7 * 150#
+train.data <- data[train.index, ]#
+test.data <- data[-train.index, ]#
+train.labels <- as.factor(as.matrix(labels)[train.index, ])#
+# train.data turned into factors (ie 1,2,3) - selected from train.index#
+# index allows the data to be brought back together#
+test.labels <- as.factor(as.matrix(labels)[-train.index, ])#
+# test.data turned into factors selected inverse of train.index#
+err.rates <- data.frame() #creates new data frame#
+#
+max.k <- 100#
+for (k in 1:max.k) { #
+	knn.fit <- knn(train = train.data, test = test.data, cl=train.labels, k=k) #
+	#save to knn.fit knn data knn() using parameters#
+	# train = train.data, test = test.data, cl = factor of classification with k 1:max.k(100)#
+	cat ('\n', 'k= ', k, ', train.pct=', train.pct, '\n', sep='')#
+	# -> k= 100, train.pct=0.7#
+	print(table(test.labels, knn.fit)) # print confusion matrix#
+	this.err <- sum(test.labels != knn.fit) / length(test.labels)#
+	err.rates <- rbind(err.rates, this.err) #
+}#
+#
+results <- data.frame(1:max.k, err.rates)#
+names(results) <- c('k', 'err.rate')#
+title <- paste('knn results (train.pct = ', train.pct, ')', sep='')#
+#
+results.plot - ggplot(results, aes(x = k, y=err.rate)) + geim_point() + geom_line()#
+results.plot <- results.plot + ggtitle(title)#
+print(results.plot)#
+results.plot <- ggplot(results, aes(x=k, y=err.rate)) + geom_smooth()#
+print(results.plot)
+data <- iris # load data 'iris'#
+labels <- data$Species # move labels to not affect learning#
+data$Species <- NULL # erase labels from working data#
+set.seed(1) # set non-random randomness#
+train.pct <- 0.7 # partition training data#
+N <- nrow(data) # remember how many rows there are#
+train.index <- sample(1:N, train.pct * N) #
+# train index is a sample of fields 1:150, selecting 0.7 * 150#
+train.data <- data[train.index, ]#
+test.data <- data[-train.index, ]#
+train.labels <- as.factor(as.matrix(labels)[train.index, ])#
+# train.data turned into factors (ie 1,2,3) - selected from train.index#
+# index allows the data to be brought back together#
+test.labels <- as.factor(as.matrix(labels)[-train.index, ])#
+# test.data turned into factors selected inverse of train.index#
+err.rates <- data.frame() #creates new data frame#
+#
+max.k <- 100#
+for (k in 1:max.k) { #
+	knn.fit <- knn(train = train.data, test = test.data, cl=train.labels, k=k) #
+	#save to knn.fit knn data knn() using parameters#
+	# train = train.data, test = test.data, cl = factor of classification with k 1:max.k(100)#
+	cat ('\n', 'k= ', k, ', train.pct=', train.pct, '\n', sep='')#
+	# -> k= 100, train.pct=0.7#
+	print(table(test.labels, knn.fit)) # print confusion matrix#
+	this.err <- sum(test.labels != knn.fit) / length(test.labels)#
+	err.rates <- rbind(err.rates, this.err) #
+}#
+#
+results <- data.frame(1:max.k, err.rates)#
+names(results) <- c('k', 'err.rate')#
+title <- paste('knn results (train.pct = ', train.pct, ')', sep='')#
+#
+results.plot <- ggplot(results, aes(x = k, y=err.rate)) + geim_point() + geom_line()#
+results.plot <- results.plot + ggtitle(title)#
+print(results.plot)#
+results.plot <- ggplot(results, aes(x=k, y=err.rate)) + geom_smooth()#
+print(results.plot)
+data <- iris # load data 'iris'#
+labels <- data$Species # move labels to not affect learning#
+data$Species <- NULL # erase labels from working data#
+set.seed(1) # set non-random randomness#
+train.pct <- 0.7 # partition training data#
+N <- nrow(data) # remember how many rows there are#
+train.index <- sample(1:N, train.pct * N) #
+# train index is a sample of fields 1:150, selecting 0.7 * 150#
+train.data <- data[train.index, ]#
+test.data <- data[-train.index, ]#
+train.labels <- as.factor(as.matrix(labels)[train.index, ])#
+# train.data turned into factors (ie 1,2,3) - selected from train.index#
+# index allows the data to be brought back together#
+test.labels <- as.factor(as.matrix(labels)[-train.index, ])#
+# test.data turned into factors selected inverse of train.index#
+err.rates <- data.frame() #creates new data frame#
+#
+max.k <- 100#
+for (k in 1:max.k) { #
+	knn.fit <- knn(train = train.data, test = test.data, cl=train.labels, k=k) #
+	#save to knn.fit knn data knn() using parameters#
+	# train = train.data, test = test.data, cl = factor of classification with k 1:max.k(100)#
+	cat ('\n', 'k= ', k, ', train.pct=', train.pct, '\n', sep='')#
+	# -> k= 100, train.pct=0.7#
+	print(table(test.labels, knn.fit)) # print confusion matrix#
+	this.err <- sum(test.labels != knn.fit) / length(test.labels)#
+	err.rates <- rbind(err.rates, this.err) #
+}#
+#
+results <- data.frame(1:max.k, err.rates)#
+names(results) <- c('k', 'err.rate')#
+title <- paste('knn results (train.pct = ', train.pct, ')', sep='')#
+#
+results.plot <- ggplot(results, aes(x = k, y=err.rate)) + geom_point() + geom_line()#
+results.plot <- results.plot + ggtitle(title)#
+print(results.plot)#
+results.plot <- ggplot(results, aes(x=k, y=err.rate)) + geom_smooth()#
+print(results.plot)
+data <- iris # load data 'iris'#
+labels <- data$Species # move labels to not affect learning#
+data$Species <- NULL # erase labels from working data#
+set.seed(1) # set non-random randomness#
+train.pct <- 0.7 # partition training data#
+N <- nrow(data) # remember how many rows there are#
+train.index <- sample(1:N, train.pct * N) #
+# train index is a sample of fields 1:150, selecting 0.7 * 150#
+train.data <- data[train.index, ]#
+test.data <- data[-train.index, ]#
+train.labels <- as.factor(as.matrix(labels)[train.index, ])#
+# train.data turned into factors (ie 1,2,3) - selected from train.index#
+# index allows the data to be brought back together#
+test.labels <- as.factor(as.matrix(labels)[-train.index, ])#
+# test.data turned into factors selected inverse of train.index#
+err.rates <- data.frame() #creates new data frame#
+#
+max.k <- 13#
+for (k in 1:max.k) { #
+	knn.fit <- knn(train = train.data, test = test.data, cl=train.labels, k=k) #
+	#save to knn.fit knn data knn() using parameters#
+	# train = train.data, test = test.data, cl = factor of classification with k 1:max.k(100)#
+	cat ('\n', 'k= ', k, ', train.pct=', train.pct, '\n', sep='')#
+	# -> k= 100, train.pct=0.7#
+	print(table(test.labels, knn.fit)) # print confusion matrix#
+	this.err <- sum(test.labels != knn.fit) / length(test.labels)#
+	err.rates <- rbind(err.rates, this.err) #
+}#
+#
+results <- data.frame(1:max.k, err.rates)#
+names(results) <- c('k', 'err.rate')#
+title <- paste('knn results (train.pct = ', train.pct, ')', sep='')#
+#
+results.plot <- ggplot(results, aes(x = k, y=err.rate)) + geom_point() + geom_line()#
+results.plot <- results.plot + ggtitle(title)#
+print(results.plot)#
+results.plot <- ggplot(results, aes(x=k, y=err.rate)) + geom_smooth()#
+print(results.plot)
+data <- iris # load data 'iris'#
+labels <- data$Species # move labels to not affect learning#
+data$Species <- NULL # erase labels from working data#
+set.seed(1) # set non-random randomness#
+train.pct <- 0.7 # partition training data#
+N <- nrow(data) # remember how many rows there are#
+train.index <- sample(1:N, train.pct * N) #
+# train index is a sample of fields 1:150, selecting 0.7 * 150#
+train.data <- data[train.index, ]#
+test.data <- data[-train.index, ]#
+train.labels <- as.factor(as.matrix(labels)[train.index, ])#
+# train.data turned into factors (ie 1,2,3) - selected from train.index#
+# index allows the data to be brought back together#
+test.labels <- as.factor(as.matrix(labels)[-train.index, ])#
+# test.data turned into factors selected inverse of train.index#
+err.rates <- data.frame() #creates new data frame#
+#
+max.k <- 18#
+for (k in 1:max.k) { #
+	knn.fit <- knn(train = train.data, test = test.data, cl=train.labels, k=k) #
+	#save to knn.fit knn data knn() using parameters#
+	# train = train.data, test = test.data, cl = factor of classification with k 1:max.k(100)#
+	cat ('\n', 'k= ', k, ', train.pct=', train.pct, '\n', sep='')#
+	# -> k= 100, train.pct=0.7#
+	print(table(test.labels, knn.fit)) # print confusion matrix#
+	this.err <- sum(test.labels != knn.fit) / length(test.labels)#
+	err.rates <- rbind(err.rates, this.err) #
+}#
+#
+results <- data.frame(1:max.k, err.rates)#
+names(results) <- c('k', 'err.rate')#
+title <- paste('knn results (train.pct = ', train.pct, ')', sep='')#
+#
+results.plot <- ggplot(results, aes(x = k, y=err.rate)) + geom_point() + geom_line()#
+results.plot <- results.plot + ggtitle(title)#
+print(results.plot)#
+results.plot <- ggplot(results, aes(x=k, y=err.rate)) + geom_smooth()#
+print(results.plot)
+data <- iris # load data 'iris'#
+labels <- data$Species # move labels to not affect learning#
+data$Species <- NULL # erase labels from working data#
+set.seed(1) # set non-random randomness#
+train.pct <- 0.7 # partition training data#
+N <- nrow(data) # remember how many rows there are#
+train.index <- sample(1:N, train.pct * N) #
+# train index is a sample of fields 1:150, selecting 0.7 * 150#
+train.data <- data[train.index, ]#
+test.data <- data[-train.index, ]#
+train.labels <- as.factor(as.matrix(labels)[train.index, ])#
+# train.data turned into factors (ie 1,2,3) - selected from train.index#
+# index allows the data to be brought back together#
+test.labels <- as.factor(as.matrix(labels)[-train.index, ])#
+# test.data turned into factors selected inverse of train.index#
+err.rates <- data.frame() #creates new data frame#
+#
+max.k <- 10#
+for (k in 1:max.k) { #
+	knn.fit <- knn(train = train.data, test = test.data, cl=train.labels, k=k) #
+	#save to knn.fit knn data knn() using parameters#
+	# train = train.data, test = test.data, cl = factor of classification with k 1:max.k(100)#
+	cat ('\n', 'k= ', k, ', train.pct=', train.pct, '\n', sep='')#
+	# -> k= 100, train.pct=0.7#
+	print(table(test.labels, knn.fit)) # print confusion matrix#
+	this.err <- sum(test.labels != knn.fit) / length(test.labels)#
+	err.rates <- rbind(err.rates, this.err) #
+}#
+#
+results <- data.frame(1:max.k, err.rates)#
+names(results) <- c('k', 'err.rate')#
+title <- paste('knn results (train.pct = ', train.pct, ')', sep='')#
+#
+results.plot <- ggplot(results, aes(x = k, y=err.rate)) + geom_point() + geom_line()#
+results.plot <- results.plot + ggtitle(title)#
+print(results.plot)#
+results.plot <- ggplot(results, aes(x=k, y=err.rate)) + geom_smooth()#
+print(results.plot)
+data <- iris # load data 'iris'#
+labels <- data$Species # move labels to not affect learning#
+data$Species <- NULL # erase labels from working data#
+set.seed(1) # set non-random randomness#
+train.pct <- 0.7 # partition training data#
+N <- nrow(data) # remember how many rows there are#
+train.index <- sample(1:N, train.pct * N) #
+# train index is a sample of fields 1:150, selecting 0.7 * 150#
+train.data <- data[train.index, ]#
+test.data <- data[-train.index, ]#
+train.labels <- as.factor(as.matrix(labels)[train.index, ])#
+# train.data turned into factors (ie 1,2,3) - selected from train.index#
+# index allows the data to be brought back together#
+test.labels <- as.factor(as.matrix(labels)[-train.index, ])#
+# test.data turned into factors selected inverse of train.index#
+err.rates <- data.frame() #creates new data frame#
+#
+max.k <- 50#
+for (k in 1:max.k) { #
+	knn.fit <- knn(train = train.data, test = test.data, cl=train.labels, k=k) #
+	#save to knn.fit knn data knn() using parameters#
+	# train = train.data, test = test.data, cl = factor of classification with k 1:max.k(100)#
+	cat ('\n', 'k= ', k, ', train.pct=', train.pct, '\n', sep='')#
+	# -> k= 100, train.pct=0.7#
+	print(table(test.labels, knn.fit)) # print confusion matrix#
+	this.err <- sum(test.labels != knn.fit) / length(test.labels)#
+	err.rates <- rbind(err.rates, this.err) #
+}#
+#
+results <- data.frame(1:max.k, err.rates)#
+names(results) <- c('k', 'err.rate')#
+title <- paste('knn results (train.pct = ', train.pct, ')', sep='')#
+#
+results.plot <- ggplot(results, aes(x = k, y=err.rate)) + geom_point() + geom_line()#
+results.plot <- results.plot + ggtitle(title)#
+print(results.plot)#
+results.plot <- ggplot(results, aes(x=k, y=err.rate)) + geom_smooth() + ggtitle#
+print(results.plot)
+data <- iris # load data 'iris'#
+labels <- data$Species # move labels to not affect learning#
+data$Species <- NULL # erase labels from working data#
+set.seed(1) # set non-random randomness#
+train.pct <- 0.7 # partition training data#
+N <- nrow(data) # remember how many rows there are#
+train.index <- sample(1:N, train.pct * N) #
+# train index is a sample of fields 1:150, selecting 0.7 * 150#
+train.data <- data[train.index, ]#
+test.data <- data[-train.index, ]#
+train.labels <- as.factor(as.matrix(labels)[train.index, ])#
+# train.data turned into factors (ie 1,2,3) - selected from train.index#
+# index allows the data to be brought back together#
+test.labels <- as.factor(as.matrix(labels)[-train.index, ])#
+# test.data turned into factors selected inverse of train.index#
+err.rates <- data.frame() #creates new data frame#
+#
+max.k <- 50#
+for (k in 1:max.k) { #
+	knn.fit <- knn(train = train.data, test = test.data, cl=train.labels, k=k) #
+	#save to knn.fit knn data knn() using parameters#
+	# train = train.data, test = test.data, cl = factor of classification with k 1:max.k(100)#
+	cat ('\n', 'k= ', k, ', train.pct=', train.pct, '\n', sep='')#
+	# -> k= 100, train.pct=0.7#
+	print(table(test.labels, knn.fit)) # print confusion matrix#
+	this.err <- sum(test.labels != knn.fit) / length(test.labels)#
+	err.rates <- rbind(err.rates, this.err) #
+}#
+#
+results <- data.frame(1:max.k, err.rates)#
+names(results) <- c('k', 'err.rate')#
+title <- paste('knn results (train.pct = ', train.pct, ')', sep='')#
+#
+results.plot <- ggplot(results, aes(x = k, y=err.rate)) + geom_point() + geom_line()#
+results.plot <- results.plot + ggtitle(title)#
+print(results.plot)#
+results.plot <- ggplot(results, aes(x=k, y=err.rate)) + geom_smooth() + ggtitle(title)#
+print(results.plot)
