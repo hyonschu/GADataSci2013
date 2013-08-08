@@ -1,15 +1,25 @@
-> library("e1071")
+> library("e1071") # load e1071 library for naive bayes classifier
 Loading required package: class
-> data(iris)
-> classifier<-naiveBayes(iris[,1:4], iris[,5])
+> data(iris) # load dataset 'iris'
+> classifier<-naiveBayes(iris[,1:4], iris[,5]) 
+# load probabilities for 'iris' set apriori and conditional 
+# apriori (without knowledge, all probability should be 1/3 (three species))
+# conditional, the probabilties change due to new information
 > table(predict(classifier, iris[,-5]), iris[,5], dnn=list('predicted','actual'))
             actual
 predicted    setosa versicolor virginica
   setosa         50          0         0
   versicolor      0         47         3
   virginica       0          3        47
-> classifier$apriori classifier$tables$Petal.Length
-Error: unexpected symbol in "classifier$apriori classifier"
+
+#setosa predicted 50/50 times
+# minor discrepancies between virginica and verzicolor due to similar 
+
+> classifier$apriori 
+> classifier$tables$Petal.Length
+iris[, 5]
+    setosa versicolor  virginica 
+        50         50         50 
 > plot(function(x) dnorm(x, 1.462, 0.1736640), 0, 8, col="red", main="Petal length distribution for the 3 different species")
 > classifier$tables$Petal.Length
             Petal.Length
