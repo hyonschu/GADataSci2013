@@ -85,3 +85,16 @@ Residual deviance: 108.64  on 124  degrees of freedom
 AIC: 116.64
 
 Number of Fisher Scoring iterations: 5
+
+> predictions <- predict(glm.out, x, type="response")
+> x$pred <- predictions
+> x$Name <- xName
+> head(x)
+  Career FirstFight   Age Wins Losses  SAM Champ       pred              Name
+1   5.00         19 24.00   12      0 0.72     0 0.09161088        Myles Jury
+2  12.00         23 35.00   34      4 1.00     1 0.88713912 Fedor Emilianenko
+3  11.25         25 36.25   27     13 1.05     0 0.28291127      Chael Sonnen
+4  10.25         17 27.25   34      2 1.08     1 0.75142153    Gegard Mousasi
+5   4.75         24 28.75   11      1 1.08     0 0.06286393        Phil Davis
+6   6.50         25 31.50    6      1 1.14     0 0.15658919      Roger Gracie
+> write.csv("predictions.csv", x=x)
