@@ -1,0 +1,87 @@
+> x<- read.csv("fighters.csv", h=T)
+> xName <- x$Name 
+> x$Name <- NULL # remove name from data
+> xBase <- x$Base
+> x$Base <- NULL # remove base from name
+
+> glm.out <- glm(Champ ~ Age + Wins + Losses + Career + SAM, family=binomial, data=x)
+> summary(glm.out)
+
+Call:
+glm(formula = Champ ~ Age + Wins + Losses + Career + SAM, family = binomial, 
+    data = x)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-2.0308  -0.6140  -0.3444   0.5319   2.2737  
+
+Coefficients:
+            Estimate Std. Error z value Pr(>|z|)    
+(Intercept) -6.50716    2.59628  -2.506   0.0122 *  
+Age          0.04557    0.07914   0.576   0.5647    
+Wins         0.03196    0.04286   0.746   0.4559    
+Losses      -0.25963    0.11464  -2.265   0.0235 *  
+Career       0.61837    0.15744   3.928 8.58e-05 ***
+SAM         -0.49450    0.40181  -1.231   0.2184    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 162.01  on 127  degrees of freedom
+Residual deviance: 107.93  on 122  degrees of freedom
+AIC: 119.93
+
+Number of Fisher Scoring iterations: 5
+
+> plot(glm.out$fitted)
+
+> Chael = data.frame(Career = 16, Wins=27, Losses=13, SAM=1.05, Age=36)
+> Akiyama = data.frame(Career = 9, Wins=15, Losses=5, SAM=3.6, Age=38)
+> JonJones = data.frame(Career = 5, Wins=17, Losses=1, SAM=1.44, Age=26)
+> predict(glm.out, Chael, type="response")
+        1 
+0.8803575 
+> predict(glm.out, JonJones, type="response")
+         1 
+0.06544451 
+> predict(glm.out, Akiyama, type="response")
+        1 
+0.1407516 
+
+> glm.out2 <- glm(Champ ~ Losses + Career + SAM, family=binomial, data=x)
+> predict(glm.out2, Chael, type="response")
+        1 
+0.9091859 
+> predict(glm.out2, Akiyama, type="response")
+        1 
+0.1119924 
+> predict(glm.out2, JonJones, type="response")
+         1 
+0.06828066 
+> summary(glm.out2)
+
+Call:
+glm(formula = Champ ~ Losses + Career + SAM, family = binomial, 
+    data = x)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-2.0321  -0.6286  -0.3464   0.6091   2.2475  
+
+Coefficients:
+            Estimate Std. Error z value Pr(>|z|)    
+(Intercept)  -4.9689     1.3675  -3.634 0.000279 ***
+Losses       -0.2370     0.1098  -2.159 0.030849 *  
+Career        0.6851     0.1380   4.963 6.94e-07 ***
+SAM          -0.5784     0.3883  -1.490 0.136290    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 162.01  on 127  degrees of freedom
+Residual deviance: 108.64  on 124  degrees of freedom
+AIC: 116.64
+
+Number of Fisher Scoring iterations: 5
